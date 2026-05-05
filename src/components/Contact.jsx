@@ -1,10 +1,19 @@
-import '../styles/contact.css'
+import "../styles/contact.css";
 
 const contactItems = [
-  { label: 'Email', value: 'hello@unicode-zaintrix.com' },
-  { label: 'Location', value: 'Cairo, Egypt (Placeholder)' },
-  { label: 'Support', value: 'Fast response within business hours' },
-]
+  { label: "Website", value: "unicodeagency.net" },
+  { label: "Phone (Egypt)", value: "+20 102 104 9353" },
+  { label: "Phone (UAE)", value: "+971 50 929 5938" },
+  {
+    label: "Egypt Office",
+    value:
+      "Carrefour CityLight Towers, 5B Entrance, Floor 8, Alexandria, Egypt",
+  },
+  {
+    label: "UAE Office",
+    value: "Office M14-03, Hour el Ainz, Dubai, United Arab Emirates",
+  },
+];
 
 function Contact() {
   return (
@@ -14,8 +23,8 @@ function Contact() {
           <p className="contact__eyebrow">Contact</p>
           <h2>Contact Us</h2>
           <p>
-            Let&apos;s discuss how Uni-Code &amp; Zaintrix WT can help you launch or scale your
-            next software initiative.
+            Let&apos;s discuss how Uni-Code &amp; Zaintrix WT can help you
+            launch or scale your next software initiative.
           </p>
           <ul>
             {contactItems.map((item) => (
@@ -32,10 +41,20 @@ function Contact() {
           <input id="name" type="text" name="name" placeholder="Your name" />
 
           <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" placeholder="Your email" />
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="Your email"
+          />
 
           <label htmlFor="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Your message" />
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Your message"
+          />
 
           <button type="submit" className="btn btn--primary">
             Send Message
@@ -43,7 +62,7 @@ function Contact() {
         </form>
       </div>
     </section>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

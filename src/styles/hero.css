@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
- 
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap");
+
 /* ── Design tokens ───────────────────────────────────── */
 .hero {
-  --ink:        #0a1a1a;
-  --teal-deep:  #0c3535;
-  --teal-mid:   #145252;
-  --teal-soft:  #1d6e6e;
-  --gold:       #c9a84c;
+  --ink: #0a1a1a;
+  --teal-deep: #0c3535;
+  --teal-mid: #145252;
+  --teal-soft: #1d6e6e;
+  --gold: #c9a84c;
   --gold-light: #e8cc87;
-  --cream:      rgba(255, 252, 242, 0.9);
-  --white:      #ffffff;
-  --muted:      rgba(255, 255, 255, 0.42);
-  --nav-h:      76px;
+  --cream: rgba(255, 252, 242, 0.9);
+  --white: #ffffff;
+  --muted: rgba(255, 255, 255, 0.42);
+  --nav-h: 76px;
 }
- 
+
 /* ── Base ────────────────────────────────────────────── */
 .hero *,
 .hero *::before,
@@ -22,9 +22,9 @@
   margin: 0;
   padding: 0;
 }
- 
+
 .hero {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   position: relative;
   min-height: 100dvh;
   min-height: 100vh;
@@ -32,15 +32,17 @@
   align-items: center;
   overflow: hidden;
   color: var(--white);
-  padding-top:    calc(var(--nav-h) + clamp(3.5rem, 9vw, 6rem));
+  padding-top: calc(var(--nav-h) + clamp(3.5rem, 9vw, 6rem));
   padding-bottom: clamp(5rem, 12vw, 9rem);
+  contain: layout style; /* ← limits reflow scope to this section */
 }
- 
+
 /* ── Video layer ─────────────────────────────────────── */
 .hero__video-wrap {
   position: absolute;
   inset: 0;
   z-index: 0;
+  contain: strict; /* ← fully isolates video layer from paint tree */
 }
 .hero__video {
   width: 100%;
@@ -49,10 +51,15 @@
   object-position: center;
   display: block;
 }
- 
+
 /* Overlays — four surgical layers */
-.hero__overlay { position: absolute; inset: 0; }
- 
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  contain: strict; /* ← each overlay is paint-isolated */
+  pointer-events: none;
+}
+
 .hero__overlay--dark {
   background: rgba(6, 18, 18, 0.78);
 }
@@ -72,39 +79,65 @@
   );
 }
 .hero__overlay--noise {
-  /* ultra-subtle grain for depth */
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-  pointer-events: none;
   opacity: 0.5;
 }
- 
+
 /* ── Ambient glows ───────────────────────────────────── */
 .hero__orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(110px);
   pointer-events: none;
   z-index: 1;
+  /* ← filter removed from here; moved to ::after pseudo-element
+       so the animating element stays on its own compositor layer
+       and blur never triggers a main-thread repaint              */
+  isolation: isolate;
+  will-change: transform; /* ← hoisted to GPU layer */
   animation: orbDrift 12s ease-in-out infinite alternate;
 }
+
+/* Blur lives on a cheap pseudo so the parent's animation
+   never forces a repaint of the blur stack               */
+.hero__orb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  filter: blur(110px);
+}
+
 .hero__orb--1 {
-  width: 480px; height: 480px;
-  top: -100px; right: -60px;
+  width: 480px;
+  height: 480px;
+  top: -100px;
+  right: -60px;
   background: radial-gradient(circle, rgba(201, 168, 76, 0.1), transparent 68%);
   animation-delay: 0s;
 }
 .hero__orb--2 {
-  width: 360px; height: 360px;
-  bottom: -60px; left: 3%;
-  background: radial-gradient(circle, rgba(29, 110, 110, 0.18), transparent 68%);
+  width: 360px;
+  height: 360px;
+  bottom: -60px;
+  left: 3%;
+  background: radial-gradient(
+    circle,
+    rgba(29, 110, 110, 0.18),
+    transparent 68%
+  );
   animation-delay: -6s;
 }
 @keyframes orbDrift {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(16px, -24px) scale(1.04); }
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(16px, -24px) scale(1.04);
+  }
 }
- 
+
 /* ── Decorative rule ─────────────────────────────────── */
 .hero__rule {
   display: flex;
@@ -120,7 +153,7 @@
   opacity: 0.7;
 }
 .hero__rule-text {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 0.68rem;
   font-weight: 500;
   letter-spacing: 0.22em;
@@ -129,17 +162,24 @@
   opacity: 0.85;
 }
 .hero__rule-dot {
-  width: 5px; height: 5px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--gold);
   opacity: 0.6;
   animation: breathe 3s ease-in-out infinite;
 }
 @keyframes breathe {
-  0%, 100% { opacity: 0.6; }
-  50%       { opacity: 1; box-shadow: 0 0 10px rgba(201,168,76,0.6); }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.6);
+  }
 }
- 
+
 /* ── Content wrapper ─────────────────────────────────── */
 .hero__content {
   position: relative;
@@ -148,10 +188,10 @@
   width: 100%;
   padding-inline: clamp(1.5rem, 5vw, 2.5rem);
 }
- 
+
 /* ── Headline ────────────────────────────────────────── */
 .hero__title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(3rem, 7vw, 5.6rem);
   font-weight: 300;
   line-height: 1.04;
@@ -160,12 +200,17 @@
   animation: fadeUp 0.8s 0.1s ease both;
   color: var(--cream);
 }
- 
+
 /* The italic accent line */
 .hero__title em {
   font-style: italic;
   font-weight: 300;
-  background: linear-gradient(95deg, var(--gold) 0%, var(--gold-light) 60%, var(--gold) 100%);
+  background: linear-gradient(
+    95deg,
+    var(--gold) 0%,
+    var(--gold-light) 60%,
+    var(--gold) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -173,13 +218,17 @@
   animation: shimmer 6s linear infinite;
 }
 @keyframes shimmer {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
- 
+
 /* ── Subtitle ────────────────────────────────────────── */
 .hero__subtitle {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: clamp(0.95rem, 1.6vw, 1.08rem);
   font-weight: 300;
   line-height: 1.9;
@@ -189,7 +238,7 @@
   letter-spacing: 0.01em;
   animation: fadeUp 0.8s 0.22s ease both;
 }
- 
+
 /* ── Buttons ─────────────────────────────────────────── */
 .hero__actions {
   display: flex;
@@ -199,13 +248,13 @@
   margin-bottom: 4rem;
   animation: fadeUp 0.8s 0.34s ease both;
 }
- 
+
 .hero__btn {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   text-decoration: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.1em;
@@ -213,7 +262,7 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
- 
+
 /* Primary — gold bordered, transparent */
 .hero__btn--primary {
   padding: 0.9rem 2rem;
@@ -224,21 +273,24 @@
   overflow: hidden;
 }
 .hero__btn--primary::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: rgba(201, 168, 76, 0.1);
   transform: translateX(-101%);
   transition: transform 0.35s ease;
 }
-.hero__btn--primary:hover::before { transform: translateX(0); }
+.hero__btn--primary:hover::before {
+  transform: translateX(0);
+}
 .hero__btn--primary:hover {
   border-color: rgba(201, 168, 76, 0.9);
   color: var(--white);
-  box-shadow: 0 0 28px rgba(201, 168, 76, 0.18),
-              inset 0 0 20px rgba(201, 168, 76, 0.06);
+  box-shadow:
+    0 0 28px rgba(201, 168, 76, 0.18),
+    inset 0 0 20px rgba(201, 168, 76, 0.06);
 }
- 
+
 /* Primary arrow icon */
 .hero__btn--primary svg {
   transition: transform 0.3s ease;
@@ -246,21 +298,21 @@
 .hero__btn--primary:hover svg {
   transform: translateX(4px);
 }
- 
+
 /* Ghost — minimal, text-only feel */
 .hero__btn--ghost {
   padding: 0.9rem 1.4rem;
-  color: rgba(255,255,255,0.48);
+  color: rgba(255, 255, 255, 0.48);
   border: none;
   background: transparent;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 0;
 }
 .hero__btn--ghost:hover {
-  color: rgba(255,255,255,0.8);
-  border-bottom-color: rgba(255,255,255,0.45);
+  color: rgba(255, 255, 255, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.45);
 }
- 
+
 /* ── Stats ───────────────────────────────────────────── */
 .hero__stats {
   display: flex;
@@ -268,22 +320,22 @@
   gap: 0;
   animation: fadeUp 0.8s 0.5s ease both;
 }
- 
+
 .hero__stat {
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   padding: 1.5rem 2.4rem 1.5rem 0;
-  border-right: 1px solid rgba(255,255,255,0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
   margin-right: 2.4rem;
 }
 .hero__stat:last-child {
   border-right: none;
   margin-right: 0;
 }
- 
+
 .hero__stat-value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(2rem, 3.5vw, 2.6rem);
   font-weight: 300;
   color: var(--gold-light);
@@ -291,14 +343,14 @@
   letter-spacing: -0.5px;
 }
 .hero__stat-label {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 0.64rem;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255, 255, 255, 0.35);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   font-weight: 400;
 }
- 
+
 /* ── Scroll indicator ────────────────────────────────── */
 .hero__scroll-cue {
   position: absolute;
@@ -314,37 +366,70 @@
 .hero__scroll-line {
   width: 1px;
   height: 52px;
-  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: scrollTravel 2.4s ease-in-out infinite;
   transform-origin: top;
+  will-change: clip-path, opacity; /* ← GPU-only properties, no layout cost */
 }
 @keyframes scrollTravel {
-  0%   { clip-path: inset(0 0 100% 0); opacity: 0; }
-  20%  { opacity: 1; }
-  80%  { opacity: 1; }
-  100% { clip-path: inset(0 0 0 0); opacity: 0; }
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 0;
+  }
 }
 .hero__scroll-label {
   font-size: 0.6rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
   writing-mode: vertical-rl;
 }
- 
+
 /* ── Entrance animations ─────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(28px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
- 
+
 /* ── Responsive ──────────────────────────────────────── */
 @media (max-width: 640px) {
-  .hero__stat { padding: 1.2rem 1.6rem 1.2rem 0; margin-right: 1.6rem; }
-  .hero__scroll-cue { display: none; }
-  .hero__title { letter-spacing: -0.2px; }
+  .hero__stat {
+    padding: 1.2rem 1.6rem 1.2rem 0;
+    margin-right: 1.6rem;
+  }
+  .hero__scroll-cue {
+    display: none;
+  }
+  .hero__title {
+    letter-spacing: -0.2px;
+  }
 }
