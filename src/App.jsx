@@ -1,33 +1,34 @@
-import { useEffect } from 'react'
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import About from './components/About'
-import Vision from './components/Vision'
-import Services from './components/Services'
-import Team from './components/Team'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+import { useEffect } from "react";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Vision from "./components/Vision";
+import Services from "./components/Services";
+import Team from "./components/Team";
+import Collaborators from "./components/Collaborators";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
-    const sections = document.querySelectorAll('.fade-in')
+    const sections = document.querySelectorAll(".fade-in");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
-            observer.unobserve(entry.target)
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
           }
-        })
+        });
       },
-      { threshold: 0.15 }
-    )
+      { threshold: 0.15 },
+    );
 
-    sections.forEach((section) => observer.observe(section))
+    sections.forEach((section) => observer.observe(section));
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -37,12 +38,13 @@ function App() {
         <About />
         <Vision />
         <Services />
+        <Collaborators />
         <Team />
         <Contact />
       </main>
       <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,12 @@
+{
+  "name": "Uni-Code & Zaintrix WT",
+  "short_name": "Uni-Code",
+  "description": "Building Scalable Software Solutions for the Future.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c3535",
+  "theme_color": "#0c3535",
+  "icons": [
+    { "src": "/public/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

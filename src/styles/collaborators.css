@@ -1,0 +1,133 @@
+.collaborators {
+  background: linear-gradient(180deg, #0a1f1f 0%, #102424 100%);
+  color: var(--color-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.collaborators::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.15),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.collaborators::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(12, 53, 53, 0.25), transparent 70%);
+  z-index: 0;
+}
+
+.collaborators .container {
+  position: relative;
+  z-index: 1;
+}
+
+.collaborators__heading h2 {
+  margin-bottom: 0.55rem;
+}
+
+.collaborators__eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.collaborators__subtitle {
+  margin: 0 0 2rem;
+  color: var(--color-gray);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.collaborators__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: clamp(1.5rem, 4vw, 2rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.collaborator__card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  text-align: center;
+}
+
+.collaborator__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
+}
+
+.collaborator__logo {
+  margin-bottom: 1.5rem;
+}
+
+.collaborator__logo img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.collaborator__content h3 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+  color: var(--color-dark);
+  font-weight: 600;
+}
+
+.collaborator__role {
+  margin: 0 0 1rem;
+  color: var(--color-accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.collaborator__description {
+  margin: 0;
+  color: var(--color-gray);
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 768px) {
+  .collaborators__grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .collaborators__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
