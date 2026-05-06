@@ -1,3 +1,6 @@
+/* ── Google Font for wordmark ── */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap");
+
 .navbar {
   position: sticky;
   top: 0;
@@ -13,20 +16,81 @@
 }
 
 .navbar__inner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-height: var(--nav-height, 76px);
 }
 
+/* ── Logo wrapper: icon on top, text below ── */
 .navbar__logo {
-  font-weight: 700;
-  color: var(--color-dark);
-  font-size: clamp(1rem, 3.1vw, 1.2rem);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  flex-shrink: 0;
+  padding: 6px 0;
 }
 
+.navbar__logo-icon {
+  height: 86px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transform: translateY(8px);
+}
+
+/* ── Text block ── */
+.navbar__logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+/* ── Wordmark: UNI-CODE ── */
+.navbar__logo-wordmark {
+  display: flex;
+  align-items: center;
+  font-family: "Orbitron", monospace;
+  font-weight: 900;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+  letter-spacing: 0.1em;
+  line-height: 1;
+}
+
+.navbar__logo-uni,
+.navbar__logo-de {
+  color: #ffffff;
+}
+
+/* The highlighted "O" — olive box like in the image */
+.navbar__logo-o {
+  color: #ffffff;
+  background-color: #b8ce34;
+  padding: 1px 3px;
+  margin: 0 1px;
+  line-height: 1.15;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #b8ce34;
+}
+
+/* ── Tagline ── */
+.navbar__logo-tagline {
+  color: #ffffff;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-weight: 400;
+  font-size: clamp(0.38rem, 1vw, 0.52rem);
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+/* ── Mobile menu ── */
 .navbar__menu {
   position: absolute;
   top: var(--nav-height, 76px);
@@ -58,7 +122,7 @@
 }
 
 .navbar__menu a::after {
-  content: '';
+  content: "";
   position: absolute;
   left: 0.2rem;
   bottom: -3px;
@@ -76,12 +140,12 @@
   width: 100%;
 }
 
+/* ── Hamburger ── */
 .navbar__toggle {
   width: 44px;
   height: 44px;
   border: 0;
   background: transparent;
-
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +175,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ── Desktop ── */
 @media (min-width: 768px) {
   .navbar__toggle {
     display: none;
@@ -127,11 +192,41 @@
     backdrop-filter: none;
     box-shadow: none;
     border-radius: 0;
+    animation: none;
   }
 
   .navbar__menu a {
     font-size: 0.92rem;
     padding: 0.2rem 0;
+  }
+
+  .navbar__logo-icon {
+    /* height: 52px; */
+  }
+
+  .navbar__logo-wordmark {
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+  }
+
+  .navbar__logo-tagline {
+    font-size: clamp(0.42rem, 0.9vw, 0.56rem);
+  }
+}
+
+/* ── Very small phones ── */
+@media (max-width: 380px) {
+  .navbar__logo-icon {
+    height: 34px;
+    transform: translateY(2px);
+  }
+
+  .navbar__logo-wordmark {
+    font-size: 0.6rem;
+  }
+
+  .navbar__logo-tagline {
+    font-size: 0.32rem;
+    letter-spacing: 0.15em;
   }
 }
 
