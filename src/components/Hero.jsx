@@ -61,9 +61,9 @@ const Hero = memo(function Hero() {
       {/* Content */}
       <div className="container hero__content">
         <div className="hero__rule" aria-hidden="true">
-          <span className="hero__rule-line" />
+          {/* <span className="hero__rule-line" /> */}
           <span className="hero__rule-text">Software Company</span>
-          <span className="hero__rule-dot" />
+          {/* <span className="hero__rule-dot" /> */}
         </div>
 
         <h1 className="hero__title">

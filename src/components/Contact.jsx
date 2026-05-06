@@ -20,7 +20,7 @@ function Contact() {
     <section id="contact" className="section contact fade-in">
       <div className="container contact__grid">
         <div className="contact__info">
-          <p className="contact__eyebrow">Contact</p>
+          {/* <p className="contact__eyebrow">Contact</p> */}
           <h2>Contact Us</h2>
           <p>
             Let&apos;s discuss how Uni-Code &amp; Zaintrix WT can help you

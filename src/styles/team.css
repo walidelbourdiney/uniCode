@@ -6,7 +6,7 @@
 }
 
 .team::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -100px;
   right: -100px;
@@ -17,7 +17,7 @@
 }
 
 .team::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -100px;
   left: -80px;
@@ -38,7 +38,7 @@
 
 .team__eyebrow {
   margin: 0 0 0.75rem;
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 0.78rem;
@@ -88,17 +88,22 @@
   box-shadow: 0 20px 42px rgba(0, 0, 0, 0.34);
 }
 
+/* ── Image: show the full portrait without cropping ─── */
 .team__card img {
   width: 100%;
-  height: clamp(240px, 34vw, 320px);
+  /* Let the image set its own natural height so nothing is cut off */
+  height: auto;
   display: block;
-  object-fit: cover;
-  object-position: center;
+  /* contain fits the whole image inside the card width */
+  object-fit: contain;
+  /* Neutral background fills any letterbox gaps */
+  background-color: #0e2020;
   filter: saturate(0.88) contrast(1.05);
 }
 
 .team__card-content {
-  padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.35rem) clamp(1.15rem, 3vw, 1.35rem);
+  padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.35rem)
+    clamp(1.15rem, 3vw, 1.35rem);
 }
 
 .team__role {

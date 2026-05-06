@@ -6,6 +6,7 @@ import Vision from "./components/Vision";
 import Services from "./components/Services";
 import Team from "./components/Team";
 import Collaborators from "./components/Collaborators";
+import Certificates from "./components/Certificates";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -39,6 +40,7 @@ function App() {
         <Vision />
         <Services />
         <Collaborators />
+        <Certificates />
         <Team />
         <Contact />
       </main>

@@ -1,13 +1,13 @@
-import '../styles/footer.css'
+import "../styles/footer.css";
 
 const footerLinks = [
-  { href: '#about', label: 'About' },
-  { href: '#vision', label: 'Vision' },
-  { href: '#services', label: 'Services' },
-  { href: '#team', label: 'Team' },
-  { href: '#contact', label: 'Contact' },
-  
-]
+  { href: "#about", label: "About" },
+  { href: "#vision", label: "Vision" },
+  { href: "#services", label: "Services" },
+  { href: "#collaborators", label: "Partners" },
+  { href: "#team", label: "Team" },
+  { href: "#contact", label: "Contact" },
+];
 
 function Footer() {
   return (
@@ -27,11 +27,12 @@ function Footer() {
         </div>
 
         <p className="footer__copy">
-          © {new Date().getFullYear()} Uni-Code &amp; Zaintrix WT. All rights reserved.
+          © {new Date().getFullYear()} Uni-Code &amp; Zaintrix WT. All rights
+          reserved.
         </p>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

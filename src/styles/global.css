@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap");
 
 :root {
   /* Core dark base */
-  --color-primary: #0c3535;        /* teal deep */
-  --color-secondary: #0a1a1a;      /* ink background */
+  --color-primary: #0c3535; /* teal deep */
+  --color-secondary: #0a1a1a; /* ink background */
 
   /* Accent (luxury gold) */
   --color-accent: #c9a84c;
 
   /* Text colors */
-  --color-dark: rgba(255, 252, 242, 0.9);  /* cream text */
+  --color-dark: rgba(255, 252, 242, 0.9); /* cream text */
   --color-gray: rgba(255, 255, 255, 0.42); /* muted */
 
   --color-white: #ffffff;
@@ -41,7 +41,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   color: var(--color-dark);
   background-color: var(--color-secondary);
 }
@@ -118,7 +118,9 @@ img {
 .fade-in {
   opacity: 0;
   transform: translateY(22px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .fade-in.visible {
