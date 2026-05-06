@@ -27,8 +27,7 @@ function Footer() {
         </div>
 
         <p className="footer__copy">
-          © {new Date().getFullYear()} Uni-Code &amp; Zaintrix WT. All rights
-          reserved.
+          © {new Date().getFullYear()} Uni-Code. All rights reserved.
         </p>
       </div>
     </footer>
