@@ -4,6 +4,10 @@
   position: relative;
   overflow: hidden;
 }
+/* #team {
+  margin-top: 0px;
+  margin-bottom: 0px;
+} */
 
 .team::before {
   content: "";
