@@ -5,18 +5,22 @@
 }
 
 .about::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -100px;
   right: -120px;
   width: 340px;
   height: 340px;
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.18), transparent 72%);
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.18),
+    transparent 72%
+  );
   z-index: 0;
 }
 
 .about::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -120px;
   left: -80px;
@@ -49,6 +53,23 @@
   color: var(--color-dark);
   line-height: 1.2;
   letter-spacing: -0.4px;
+}
+.about__content img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+  transition: var(--transition);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.about__content img:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .about__story-card {
