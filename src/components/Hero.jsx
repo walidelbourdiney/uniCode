@@ -102,10 +102,10 @@ const Hero = memo(function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <div className="hero__scroll-cue" aria-hidden="true">
+      {/* <div className="hero__scroll-cue" aria-hidden="true">
         <div className="hero__scroll-line" />
         <span className="hero__scroll-label">Scroll</span>
-      </div>
+      </div> */}
     </section>
   );
 });
