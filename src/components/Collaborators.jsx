@@ -68,10 +68,10 @@ function Collaborators() {
               </div>
               <div className="collaborator__content">
                 <h3>{collaborator.name}</h3>
-                <p className="collaborator__role">{collaborator.role}</p>
-                <p className="collaborator__description">
-                  {collaborator.description}
-                </p>
+                {/* <p className="collaborator__role">{collaborator.role}</p> */}
+                {/* <p className="collaborator__description"> */}
+                {/* {collaborator.description} */}
+                {/* </p> */}
               </div>
             </div>
           ))}
