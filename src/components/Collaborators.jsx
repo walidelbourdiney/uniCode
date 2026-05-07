@@ -3,7 +3,7 @@ import ABLifting from "../assets/partners/ABLifting.webp";
 import Arab from "../assets/partners/Arab.jpeg";
 import ATC from "../assets/partners/ATC.png";
 import eeac from "../assets/partners/EEAC2.png";
-import horas from "../assets/partners/horas.jpg";
+import horas from "../assets/partners/horos2.png";
 import QDS from "../assets/partners/QDS2.png";
 
 const collaborators = [
@@ -36,7 +36,7 @@ const collaborators = [
     logo: eeac,
   },
   {
-    name: "HORUS",
+    name: "HORUS for contracting and road paving",
     role: "Sustainability Partner",
     description:
       "Working together on sustainable practices and environmental initiatives.",
