@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import "../styles/team.css";
+import walid from "../assets/team/Walid-Profile.png";
 
 const teamMembers = [
   {
-    name: "Amira Hassan",
-    role: "Lead Software Engineer",
-    image:
-      "https://plus.unsplash.com/premium_photo-1723802522352-9c1d0f67d6a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHBvcnRyYWl0fGVufDB8MnwwfHx8MA%3D%3D",
+    name: "Walid Ezzat",
+    role: "Frontend Software Engineer",
+    image: walid,
   },
   {
     name: "Youssef Karim",

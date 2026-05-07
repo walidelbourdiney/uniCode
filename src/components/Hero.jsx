@@ -1,6 +1,7 @@
 import { useEffect, useRef, memo } from "react";
 import "../styles/hero.css";
 import heroVideo from "../assets/onlinecoursevideo.mp4";
+import cover from "../assets/cover.jpg";
 
 const Hero = memo(function Hero() {
   const videoRef = useRef(null);
@@ -36,7 +37,7 @@ const Hero = memo(function Hero() {
           loop
           playsInline
           preload="none" /* ← don't fetch until IntersectionObserver fires */
-          poster="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=75&fm=webp"
+          poster={cover}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
