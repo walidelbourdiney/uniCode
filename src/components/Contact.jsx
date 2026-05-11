@@ -7,8 +7,7 @@ const contactItems = [
   { label: "Phone (UAE)", value: "+971 50 929 5938" },
   {
     label: "Egypt Office",
-    value:
-      "Carrefour CityLight Towers, 5B Entrance, Floor 8, Alexandria, Egypt",
+    value: "4 Al-Shaheed Salah Mostafa st, Raml Station, Alexandria, Egypt",
   },
   {
     label: "UAE Office",
