@@ -27,7 +27,7 @@ function Navbar() {
             className="navbar__logo-icon"
           />
 
-          {/* Text block below the icon */}
+          {/* Text block besides the icon */}
           <div className="navbar__logo-text">
             <div className="navbar__logo-wordmark">
               <span className="navbar__logo-uni">UNI-C</span>
