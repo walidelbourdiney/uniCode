@@ -8,12 +8,13 @@
   gap: 1rem;
 }
 .certificates__eyebrow {
-  color: var(--color-accent) !important;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
-
+#c-eyebrow {
+  color: var(--color-accent);
+}
 .certificate__item {
   background: rgba(255, 255, 255, 0.07);
   border: 1px solid rgba(255, 255, 255, 0.15);

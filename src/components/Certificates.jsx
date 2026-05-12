@@ -14,7 +14,9 @@ function Certificates() {
     <section id="certificates" className="section certificates fade-in">
       <div className="container">
         <div className="section__heading certificates__heading">
-          <p className="certificates__eyebrow">Our Achievements</p>
+          <p className="certificates__eyebrow" id="c-eyebrow">
+            Our Achievements
+          </p>
           <h2>Certificates & Accreditations</h2>
           <p className="certificates__subtitle">
             We are proud to hold industry-leading certifications that
