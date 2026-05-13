@@ -1,24 +1,69 @@
 import { useState, useEffect } from "react";
 import "../styles/team.css";
+
+// Team Images
 import walid from "../assets/team/Walid-Profile.png";
+import ceo from "../assets/team/CEO.jpeg";
+import eslam from "../assets/team/Eslam.jpeg";
+import youssef from "../assets/team/CTO (1).jpeg";
+import menna from "../assets/team/Menna (1).jpeg";
+import eyad from "../assets/team/Eyad2.png";
+import tarek from "../assets/team/Tarek2.png";
+import pr from "../assets/team/PR (1).jpeg";
+import mariam from "../assets/team/Mariam2.png";
+import walaa from "../assets/team/Walaa.jpeg";
 
 const teamMembers = [
   {
+    name: "Ahmed Abu AL-hassan",
+    role: "CEO",
+    image: ceo,
+  },
+  {
+    name: "Eslam Raafat",
+    role: "Business Development Manager",
+    image: eslam,
+  },
+  {
+    name: "Youssef Ibrahim",
+    role: "CTO",
+    image: youssef,
+  },
+  {
+    name: "Menna Qasim",
+    role: "Project Manager",
+    image: menna,
+  },
+  {
     name: "Walid Ezzat",
-    role: "Frontend Software Engineer",
+    role: "Frontend Developer",
     image: walid,
   },
+
   {
-    name: "Youssef Karim",
-    role: "Product Designer",
-    image:
-      "https://images.unsplash.com/photo-1654110455429-cf322b40a906?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvcnRyYWl0fGVufDB8MnwwfHx8MA%3D%3D",
+    name: "Eyad Muhammed",
+    role: "Sales Manager",
+    image: eyad,
   },
   {
-    name: "Lina Farouk",
-    role: "Project Manager",
-    image:
-      "https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBvcnRyYWl0fGVufDB8MnwwfHx8MA%3D%3D",
+    name: "Mohamed Tarek",
+    role: "Operation Manager",
+    image: tarek,
+  },
+  {
+    name: "Abdelrahman Tarek",
+    role: "PR",
+    image: pr,
+  },
+  {
+    name: "Mariam Haitham",
+    role: "HR Manager",
+    image: mariam,
+  },
+  {
+    name: "Walaa Mokhtar",
+    role: "Secretary",
+    image: walaa,
   },
 ];
 
