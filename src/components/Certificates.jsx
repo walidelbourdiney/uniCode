@@ -1,13 +1,13 @@
 import "../styles/certificates.css";
 
 // Replace these with your actual certificate image imports
-import iso9001 from "../assets/certs/iso9001.jpeg";
-import iso27001 from "../assets/certs/iso27001.jpeg";
-import google from "../assets/certs/google.jpeg";
-import microsoft from "../assets/certs/microsoft.jpeg";
+import iso9001 from "../assets/certs/iso9001-2.jpg";
+import iso27001 from "../assets/certs/iso27001-2.png";
+import google from "../assets/certs/google2.png";
+import microsoft from "../assets/certs/microsoft4.png";
 import oracleFusion from "../assets/certs/oracle2.webp";
 import oracleCertified from "../assets/certs/oracle2.webp";
-import odoo from "../assets/certs/odoo.jpeg";
+import odoo from "../assets/certs/odoo2.png";
 
 const certificates = [
   {

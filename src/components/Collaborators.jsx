@@ -59,8 +59,8 @@ function Collaborators() {
           <p className="collaborators__eyebrow">Our Collaborators</p>
           <h2>Trusted Partners</h2>
           <p className="collaborators__subtitle">
-            We work with leading organizations to deliver exceptional results
-            and drive innovation.
+            Trusted by leading organizations across industries to deliver
+            results that matter.
           </p>
         </div>
         <div className="collaborators__grid">
