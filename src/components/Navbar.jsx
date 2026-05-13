@@ -12,6 +12,7 @@ function Navbar() {
     { href: "#vision", label: "Vision" },
     { href: "#services", label: "Services" },
     { href: "#collaborators", label: "Partners" },
+    { href: "#certificates", label: "Certificates" },
     { href: "#team", label: "Team" },
     { href: "#contact", label: "Contact" },
   ];
