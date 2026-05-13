@@ -5,8 +5,8 @@ import iso9001 from "../assets/certs/iso9001.jpeg";
 import iso27001 from "../assets/certs/iso27001.jpeg";
 import google from "../assets/certs/google.jpeg";
 import microsoft from "../assets/certs/microsoft.jpeg";
-import oracleFusion from "../assets/certs/oracle.jpeg";
-import oracleCertified from "../assets/certs/oracle.jpeg";
+import oracleFusion from "../assets/certs/oracle2.webp";
+import oracleCertified from "../assets/certs/oracle2.webp";
 import odoo from "../assets/certs/odoo.jpeg";
 
 const certificates = [
