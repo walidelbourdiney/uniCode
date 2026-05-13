@@ -4,7 +4,7 @@ import "../styles/contact.css";
 const contactItems = [
   { label: "Website", value: "unicodeagency.net" },
   { label: "Phone (Egypt)", value: "+20 102 104 9353" },
-  { label: "Phone (UAE)", value: "+971 50 929 5938" },
+
   {
     label: "Egypt Office",
     value: "4 Al-Shaheed Salah Mostafa st, Raml Station, Alexandria, Egypt",
