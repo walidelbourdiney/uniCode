@@ -175,6 +175,9 @@
   background-color: var(--color-accent);
   width: 22px;
 }
+.team__loading {
+  height: 420px; /* match your card's height so the layout doesn't shift */
+}
 
 @media (min-width: 640px) {
   .team__slider {

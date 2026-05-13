@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../styles/team.css";
 
 // Team Images
@@ -14,83 +14,97 @@ import mariam from "../assets/team/Mariam2.png";
 import walaa from "../assets/team/Walaa.jpeg";
 
 const teamMembers = [
-  {
-    name: "Ahmed Abu AL-hassan",
-    role: "CEO",
-    image: ceo,
-  },
-  {
-    name: "Eslam Raafat",
-    role: "Business Development Manager",
-    image: eslam,
-  },
-  {
-    name: "Youssef Ibrahim",
-    role: "CTO",
-    image: youssef,
-  },
-  {
-    name: "Menna Qasim",
-    role: "Project Manager",
-    image: menna,
-  },
-  {
-    name: "Walid Ezzat",
-    role: "Frontend Developer",
-    image: walid,
-  },
-
-  {
-    name: "Eyad Muhammed",
-    role: "Sales Manager",
-    image: eyad,
-  },
-  {
-    name: "Mohamed Tarek",
-    role: "Operation Manager",
-    image: tarek,
-  },
-  {
-    name: "Abdelrahman Tarek",
-    role: "PR",
-    image: pr,
-  },
-  {
-    name: "Mariam Haitham",
-    role: "HR Manager",
-    image: mariam,
-  },
-  {
-    name: "Walaa Mokhtar",
-    role: "Secretary",
-    image: walaa,
-  },
+  { name: "Ahmed Abu AL-hassan", role: "CEO", image: ceo },
+  { name: "Eslam Raafat", role: "Business Development Manager", image: eslam },
+  { name: "Youssef Ibrahim", role: "CTO", image: youssef },
+  { name: "Menna Qasim", role: "Project Manager", image: menna },
+  { name: "Walid Ezzat", role: "Frontend Developer", image: walid },
+  { name: "Eyad Muhammed", role: "Sales Manager", image: eyad },
+  { name: "Mohamed Tarek", role: "Operation Manager", image: tarek },
+  { name: "Abdelrahman Tarek", role: "PR", image: pr },
+  { name: "Mariam Haitham", role: "HR Manager", image: mariam },
+  { name: "Walaa Mokhtar", role: "Secretary", image: walaa },
 ];
 
 function Team() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [imagesReady, setImagesReady] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const timerRef = useRef(null);
 
-  // Auto-advance every 3 seconds; resets if user manually navigates
+  // 1. Preload all images before showing the slider
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % teamMembers.length);
+    let cancelled = false;
+
+    const preload = teamMembers.map(
+      (member) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = resolve;
+          img.src = member.image;
+        }),
+    );
+
+    Promise.all(preload).then(() => {
+      if (!cancelled) setImagesReady(true);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // 2. Crossfade helper — accepts a plain index number
+  const triggerTransition = (nextIndex) => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setActiveIndex(nextIndex);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
+  // 3. Auto-advance after images are ready
+  useEffect(() => {
+    if (!imagesReady) return;
+
+    timerRef.current = setInterval(() => {
+      triggerTransition((activeIndex + 1) % teamMembers.length);
     }, 3000);
 
-    // Clear the old timer whenever activeIndex changes or component unmounts
-    return () => clearInterval(timer);
-  }, [activeIndex]);
+    return () => clearInterval(timerRef.current);
+  }, [activeIndex, imagesReady]);
 
+  // 4. Nav handlers
   const goToPrev = () => {
-    setActiveIndex(
-      (prev) => (prev - 1 + teamMembers.length) % teamMembers.length,
+    clearInterval(timerRef.current);
+    triggerTransition(
+      (activeIndex - 1 + teamMembers.length) % teamMembers.length,
     );
   };
 
   const goToNext = () => {
-    setActiveIndex((prev) => (prev + 1) % teamMembers.length);
+    clearInterval(timerRef.current);
+    triggerTransition((activeIndex + 1) % teamMembers.length);
+  };
+
+  const goToIndex = (index) => {
+    clearInterval(timerRef.current);
+    triggerTransition(index);
   };
 
   const activeMember = teamMembers[activeIndex];
+
+  // 5. Hold layout until all images are cached
+  if (!imagesReady) {
+    return (
+      <section id="team" className="section team fade-in">
+        <div className="container">
+          <div className="team__loading" aria-label="Loading team..." />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="team" className="section team fade-in">
@@ -114,7 +128,13 @@ function Team() {
             ‹
           </button>
 
-          <article className="team__card" key={activeMember.name}>
+          <article
+            className="team__card"
+            style={{
+              opacity: isTransitioning ? 0 : 1,
+              transition: "opacity 0.25s ease",
+            }}
+          >
             <img src={activeMember.image} alt={activeMember.name} />
             <div className="team__card-content">
               <p className="team__role">{activeMember.role}</p>
@@ -142,7 +162,7 @@ function Team() {
               type="button"
               key={member.name}
               className={`team__dot ${index === activeIndex ? "active" : ""}`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => goToIndex(index)}
               aria-label={`Go to ${member.name}`}
             />
           ))}
