@@ -1,12 +1,28 @@
 import "../styles/certificates.css";
 
+// Replace these with your actual certificate image imports
+import iso9001 from "../assets/certs/iso9001.jpeg";
+import iso27001 from "../assets/certs/iso27001.jpeg";
+import google from "../assets/certs/google.jpeg";
+import microsoft from "../assets/certs/microsoft.jpeg";
+import oracleFusion from "../assets/certs/oracle.jpeg";
+import oracleCertified from "../assets/certs/oracle.jpeg";
+import odoo from "../assets/certs/odoo.jpeg";
+
 const certificates = [
-  { title: "ISO 9001 Certification" },
-  { title: "ISO 14001 Certification" },
-  { title: "GDPR Compliance" },
-  { title: "Cybersecurity Certification" },
-  { title: "Industry Excellence Award" },
-  { title: "Innovation Patent" },
+  {
+    name: "International Organization for Standardization ISO 9001",
+    image: iso9001,
+  },
+  {
+    name: "International Organization for Standardization ISO/IEC 27001",
+    image: iso27001,
+  },
+  { name: "GOOGLE Cloud Partner Certification", image: google },
+  { name: "MICROSOFT Cloud Partner Certification", image: microsoft },
+  { name: "Oracle Fusion Cloud ERP Certification", image: oracleFusion },
+  { name: "Oracle Certified Implementation Partner", image: oracleCertified },
+  { name: "Odoo Ready Partner", image: odoo },
 ];
 
 function Certificates() {
@@ -14,22 +30,24 @@ function Certificates() {
     <section id="certificates" className="section certificates fade-in">
       <div className="container">
         <div className="section__heading certificates__heading">
-          <p className="certificates__eyebrow" id="c-eyebrow">
-            Our Achievements
-          </p>
-          <h2>Certificates & Accreditations</h2>
+          <p className="certificates__eyebrow">Accreditations</p>
+          <h2>Our Certificates</h2>
           <p className="certificates__subtitle">
-            We are proud to hold industry-leading certifications that
-            demonstrate our commitment to excellence, security, and innovation.
+            Recognized and certified by leading international organizations for
+            quality, security, and excellence.
           </p>
         </div>
-        <ul className="certificates__list">
+
+        <div className="certificates__grid">
           {certificates.map((cert, index) => (
-            <li key={index} className="certificate__item">
-              <h3>{cert.title}</h3>
-            </li>
+            <div key={index} className="certificate__card">
+              <div className="certificate__logo-box">
+                <img src={cert.image} alt={`${cert.name} certificate`} />
+              </div>
+              <p className="certificate__name">{cert.name}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

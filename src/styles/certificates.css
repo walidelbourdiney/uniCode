@@ -1,38 +1,156 @@
-.certificates__list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto;
-  max-width: 800px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: center;
+/* ── Section shell ─────────────────────────────────────── */
+.certificates {
+  background: linear-gradient(180deg, #102424 0%, #0a1f1f 100%);
+  position: relative;
+  overflow: hidden;
 }
+
+.certificates::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 168, 76, 0.15),
+    transparent 70%
+  );
+  z-index: 0;
+}
+
+.certificates::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(12, 53, 53, 0.25), transparent 70%);
+  z-index: 0;
+}
+
+.certificates .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Heading ───────────────────────────────────────────── */
 .certificates__eyebrow {
-  font-weight: 700;
+  margin: 0 0 0.75rem;
+  color: var(--color-accent) !important;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-#c-eyebrow {
-  color: var(--color-accent);
-}
-.certificate__item {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.75rem;
-  backdrop-filter: blur(10px);
-  transition: var(--transition);
-}
-
-.certificate__item:hover {
-  border-color: rgba(201, 168, 76, 0.4);
-  transform: translateX(4px);
-}
-
-.certificate__item h3 {
-  margin: 0;
-  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-  color: var(--color-dark);
+  font-size: 0.78rem;
   font-weight: 600;
+}
+
+.certificates__heading h2 {
+  margin-bottom: 0.55rem;
+}
+
+.certificates__subtitle {
+  margin: 0 0 2.5rem;
+  color: var(--color-gray);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Grid ──────────────────────────────────────────────── */
+.certificates__grid {
+  display: grid;
+  /* 4 columns on wide screens, auto-wraps on smaller */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.certificate__card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.75rem 1.25rem;
+  /* flex column: logo at top, title pinned to bottom */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.certificate__card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 168, 76, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.32);
+}
+
+/* ── Logo box ──────────────────────────────────────────── */
+/*
+  Fixed square container with a white rounded background.
+  This hides checkerboard/white edges on any logo image
+  and makes every card look identical regardless of the
+  original image dimensions.
+*/
+.certificate__logo-box {
+  width: 130px;
+  height: 100px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  /* subtle inner shadow to separate logo box from card */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  margin-bottom: 1.25rem;
+}
+
+.certificate__logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ── Title ─────────────────────────────────────────────── */
+/*
+  flex: 1 + display flex + align-items: flex-end
+  → title always sits at the BOTTOM of the card,
+    so cards with 1-line and 2-line titles all align.
+*/
+.certificate__name {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (min-width: 640px) {
+  .certificates__grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .certificates__grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
 }
