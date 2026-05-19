@@ -12,10 +12,23 @@ import tarek from "../assets/team/Tarek2.png";
 import pr from "../assets/team/PR (1).jpeg";
 import mariam from "../assets/team/Mariam2.png";
 import walaa from "../assets/team/Walaa.jpeg";
+import karim from "../assets/team/Karim.jpeg";
+import fady from "../assets/team/Fady.png";
+import qasim from "../assets/team/Qasim.png";
+import howida from "../assets/team/howida.png";
 
 const teamMembers = [
   { name: "Ahmed Abu AL-hassan", role: "CEO", image: ceo },
+  {
+    name: "Prof. Dr. Fady Emad Eldin",
+    role: "Partner in Zentrix Dubai branch",
+    image: fady,
+  },
+  { name: "Howida Nagy", role: "General Manager", image: howida },
+
   { name: "Eslam Raafat", role: "Business Development Manager", image: eslam },
+  { name: "Mohamed Qasim", role: "PR", image: qasim },
+  { name: "Karim Mohamed", role: "Chartered accountant", image: karim },
   { name: "Youssef Ibrahim", role: "CTO", image: youssef },
   { name: "Menna Qasim", role: "Project Manager", image: menna },
   { name: "Walid Ezzat", role: "Frontend Developer", image: walid },
